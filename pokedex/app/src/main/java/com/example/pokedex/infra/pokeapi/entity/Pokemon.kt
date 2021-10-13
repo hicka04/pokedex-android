@@ -1,13 +1,15 @@
 package com.example.pokedex.infra.pokeapi.entity
 
+import com.squareup.moshi.Json
+
 data class Pokemon(
     val id: Int,
     val name: String,
     val height: Int,
     val weight: Int,
-    val types: List<Type>,
-    val abilities: List<Ability>,
-    val sprite: Sprite
+//    val types: List<Type>,
+//    val abilities: List<Ability>,
+    @Json(name = "sprites") val sprite: Sprite
 ) {
     data class Type(
         val slot: Int,
@@ -23,6 +25,6 @@ data class Pokemon(
     )
 
     data class Sprite(
-        val frontDefault: String
+        @Json(name = "front_default") val frontDefault: String
     )
 }

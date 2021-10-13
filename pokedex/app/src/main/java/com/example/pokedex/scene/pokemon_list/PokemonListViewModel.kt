@@ -1,5 +1,6 @@
 package com.example.pokedex.scene.pokemon_list
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,12 @@ class PokemonListViewModel : ViewModel() {
         viewModelScope.launch {
             PokeApi.retrofitService.getPokemon().body()?.let {
                 _pokemonList.postValue(it.results)
+            }
+        }
+
+        viewModelScope.launch {
+            PokeApi.retrofitService.getPokemon("bulbasaur").body().let {
+                Log.d("PokemonListViewModel", it.toString())
             }
         }
     }
