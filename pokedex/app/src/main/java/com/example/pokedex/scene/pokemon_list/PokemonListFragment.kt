@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.R
 import com.example.pokedex.databinding.PokemonListFragmentBinding
@@ -33,7 +34,8 @@ class PokemonListFragment : Fragment() {
         )
 
         val adapter = PokemonListAdapter { pokemonListElement ->
-            Log.d("PokemonListFragment", "pokemon: ${pokemonListElement.name}")
+            val action = PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailFragment(pokemonListElement.name)
+            findNavController().navigate(action)
         }
 
         binding.recyclerView.adapter = adapter
