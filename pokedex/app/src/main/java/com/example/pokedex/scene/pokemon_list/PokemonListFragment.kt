@@ -21,7 +21,6 @@ class PokemonListFragment : Fragment() {
     }
 
     private lateinit var viewModel: PokemonListViewModel
-    private val adapter = PokemonListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +31,11 @@ class PokemonListFragment : Fragment() {
             container,
             false
         )
+
+        val adapter = PokemonListAdapter { pokemonListElement ->
+            Log.d("PokemonListFragment", "pokemon: ${pokemonListElement.name}")
+        }
+
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
 
