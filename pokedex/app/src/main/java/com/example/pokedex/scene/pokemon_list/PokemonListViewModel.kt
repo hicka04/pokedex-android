@@ -20,11 +20,5 @@ class PokemonListViewModel : ViewModel() {
                 _pokemonList.postValue(it.results)
             }
         }
-
-        viewModelScope.launch {
-            PokeApi.retrofitService.getPokemon("bulbasaur").body().let {
-                Log.d("PokemonListViewModel", it.toString())
-            }
-        }
     }
 }
