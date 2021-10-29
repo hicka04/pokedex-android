@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
+import com.squareup.picasso.Picasso
 
 class PokemonDetailFragment : Fragment() {
     private val args: PokemonDetailFragmentArgs by navArgs()
@@ -26,6 +27,8 @@ class PokemonDetailFragment : Fragment() {
 
         viewModel.pokemon.observe(viewLifecycleOwner) {
             binding.pokemonName.text = it.name
+            binding.pokedexNumber.text = it.id.toString()
+            Picasso.get().load(it.sprite.frontDefault).into(binding.pokemonImage)
         }
 
         return binding.root
